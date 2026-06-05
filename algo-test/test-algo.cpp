@@ -1427,21 +1427,21 @@ void turn_next_2(const string& str, int next[]) {
 					next[i] = 0;
 					continue;
 				}
-				while (j > 1 && str[j] != str[i - 1]) {
-					j = next[j - 1];
+				while (j != 0 && str[j] != str[i - 1]) {
+					j = next[j];
 				}
-				if (j >= 0) {
-					next[i] = 0;
+				if (str[j] == str[i-1]) {
+					next[i] = j+1;
 				}
 				else {
-					next[i] = next[j];
+					next[i] = 0;
 				}
 			}
 		}
 }
 int main() {
 	//kmp_next arr
-	string str_kid = "abcabcdaaaaaaaaadad";
+	string str_kid = "abcabcdaaadad";
 	const int len = str_kid.size();
 	int* next = new int[len];
 	turn_next_2(str_kid, next);
