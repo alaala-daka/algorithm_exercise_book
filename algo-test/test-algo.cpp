@@ -1410,61 +1410,65 @@ eg:
 //		}
 //	}
 //}
-void turn_next_2(const string& str, int next[]) {
-	int len = str.size();
-	next[0] = -1;
-	if (len > 1) {
-		next[1] = 0;
-	}
-	if(len>2)
-		for (int i = 2; i < len; i++) {
-			if (str[i - 1] == str[next[i - 1]]) {
-				next[i] = next[i - 1] + 1;
-			}
-			else {
-				int j = next[i - 1];
-				if (j == 0) {
-					next[i] = 0;
-					continue;
-				}
-				while (j != 0 && str[j] != str[i - 1]) {
-					j = next[j];
-				}
-				if (str[j] == str[i-1]) {
-					next[i] = j+1;
-				}
-				else {
-					next[i] = 0;
-				}
-			}
-		}
-}
-int main() {
-	//kmp_next arr
-	string str_kid = "abcabcdaaadad";
-	const int len = str_kid.size();
-	int* next = new int[len];
-	turn_next_2(str_kid, next);
-	for (auto a = 0; a < len;a++) {
-		cout << next[a] << ' ';
-	}
-	cout << endl;
-	string main_str = "abcbacbaabbcababcabcdacbabcabcaabcabcadbbdaa";
-	int i = 0;
-	int j = 0;
-	while (i < (int)main_str.size() && j < (int)str_kid.size()) {
-		if (j==-1||main_str[i] == str_kid[j]) {
-			i++;
-			j++;	
-		}
-		else {
-			j = next[j];
-		}
-	}
-	if (j == str_kid.size()) {
-		cout << "find!" << ' ';
-	}
-	else {
-		cout << "cannot find such str!" << ' ';
-	}
-}
+// void turn_next_2(const string& str, int next[]) {
+// 	int len = str.size();
+// 	next[0] = -1;
+// 	if (len > 1) {
+// 		next[1] = 0;
+// 	}
+// 	if(len>2)
+// 		for (int i = 2; i < len; i++) {
+// 			if (str[i - 1] == str[next[i - 1]]) {
+// 				next[i] = next[i - 1] + 1;
+// 			}
+// 			else {
+// 				int j = next[i - 1];
+// 				if (j == 0||j==-1) {
+// 					next[i] = j;
+// 					continue;
+// 				}
+// 				while (j != 0 && str[j] != str[i - 1]) {
+// 					j = next[j];
+// 				}
+// 				if (str[j] == str[i-1]) {
+// 					next[i] = j+1;
+// 				}
+// 				else {
+// 					next[i] = 0;
+// 				}
+// 			}
+// 			while(next[i]!=-1||str[i]==str[next[i]]){
+// 				next[i]=next[next[i]];
+// 			}
+// 		}
+// }
+// int main() {
+// 	//kmp_next arr
+// 	string str_kid = "cbabcabcaab";
+// 	const int len = str_kid.size();
+// 	int* next = new int[len];
+// 	turn_next_2(str_kid, next);
+// 	for (auto a = 0; a < len;a++) {
+// 		cout << next[a] << ' ';
+// 	}
+// 	cout << endl;
+// 	string main_str = "abcbacbaabbcababcabcdacbabcabcaabcabcadbbdaa";
+// 	int i = 0;
+// 	int j = 0;
+// 	while (i < (int)main_str.size() && j < (int)str_kid.size()) {
+// 		if (j==-1||main_str[i] == str_kid[j]) {
+// 			i++;
+// 			j++;	
+// 		}
+// 		else {
+// 			j = next[j];
+// 		}
+// 	}
+// 	if (j == str_kid.size()) {
+// 		cout << "find!" << ' ';
+// 	}
+// 	else {
+// 		cout << "cannot find such str!" << ' ';
+// 	}
+// }
+//finished
